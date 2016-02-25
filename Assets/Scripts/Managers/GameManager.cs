@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+	[Header("Units")]
+	public WeakGroundUnitVariables weakUnit;
 
+	[Header("Towers")]
+	public BaseTowerVariables baseTower;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +18,5 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }
