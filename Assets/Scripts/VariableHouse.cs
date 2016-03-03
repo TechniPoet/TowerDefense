@@ -39,3 +39,13 @@ public class BaseTowerVariables
 	public float radius;
 	public float reductionDist;
 }
+
+
+[System.Serializable]
+public class CameraSettingsVariables
+{
+	public float moveSpeed;
+	public float lowZoomY;
+	public float highZoomY;
+	public float zoomSpeed;
+}
