@@ -7,12 +7,12 @@ public class Unit : Mortal {
 
 
 	public float speed;
-	enum movementType{ ground, fly };
-	public int mvt;
+	public enum movementType{ ground, fly };
+	public movementType movetype;
 	//private string direction;
 
-	enum faction{ player, ai };
-	public int alignment = (int)faction.ai;
+	public enum faction{ player, ai };
+	public faction alignment;
 
 	private Vector3 nextTarget;
 
@@ -21,6 +21,9 @@ public class Unit : Mortal {
 
 	public bool occupied;
 	private Unit obstruction;
+
+
+	Quaternion direction;
 
 	void Awake(){
 
@@ -36,7 +39,7 @@ public class Unit : Mortal {
 
 		if (obstruction != null) {
 			if (obstruction.isDead) {
-				occupied = false;
+				//occupied = false;
 			}
 		}
 
@@ -69,15 +72,15 @@ public class Unit : Mortal {
 	}
 
 	//sets up a unit
-	void Setup (int maxHealth, int mvtType, int faction, float speed){
+	void Setup (int maxHealth, movementType mvtType, faction faction, float speed){
 		this.maxHealth = maxHealth;
 		this.currHealth = maxHealth;
-		this.mvt = mvtType;
+		this.movetype = mvtType;
 		this.alignment = faction;
 		this.speed = speed;
 	}
-
-	void OnTriggerEnter2D(Collider2D col){
+	/*
+	void OnCollisionEnter2D(Collision2D col){
 		Unit hit = col.gameObject.GetComponent<Unit>();
 
 		Debug.Log (hit.occupied);
@@ -91,6 +94,18 @@ public class Unit : Mortal {
 			}
 		}
 	}
+
+	void OnCollisionExit2D(Collision2D col){
+
+		Unit hit = col.gameObject.GetComponent<Unit> ();
+
+		Debug.Log ("exit collision: " + hit.alignment.ToString());
+
+		if (hit.alignment != alignment) {
+			occupied = false;
+		}
+
+	}*/
 
 
 }
