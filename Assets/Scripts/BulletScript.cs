@@ -12,8 +12,10 @@ public class BulletScript : MonoBehaviour {
 
     public void Setup(TowerScript parent, Transform target, float speed, float damage) 
     {
+		Physics2D.IgnoreCollision(parent.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         parentTower = parent;
         targetTranform = target;
+		transform.position = parent.transform.position;
         bulletSpeed = speed;
         bulletDamage = damage;
 		StartCoroutine(LifeTime());

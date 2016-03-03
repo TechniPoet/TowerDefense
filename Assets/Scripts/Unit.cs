@@ -14,10 +14,10 @@ public class Unit : Mortal {
 	public enum faction{ player, ai };
 	public faction alignment;
 
-	private Vector3 nextTarget;
+	public Vector3 nextTarget;
 
 	//target(s) for unit to move to
-	private List<Vector3> target;
+	public List<Vector3> target;
 
 	public bool occupied;
 	private Unit obstruction;
@@ -36,7 +36,8 @@ public class Unit : Mortal {
 	
 	// Update is called once per frame
 	void Update () {
-
+		//Debug.Log(Input.mousePosition);
+		Debug.Log(Input.GetMouseButtonDown(0));
 		if (obstruction != null) {
 			if (obstruction.isDead) {
 				//occupied = false;
@@ -58,7 +59,7 @@ public class Unit : Mortal {
 			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
 
 			//if the unit has reached the first position then remove that position from the list of targets
-			if (transform.position.Equals(target [0])) {
+			if (/*transform.position.Equals(target [0])*/ Vector3.Distance(transform.position, target[0]) < .2f) {
 				target.RemoveAt(0);
 			}
 		}

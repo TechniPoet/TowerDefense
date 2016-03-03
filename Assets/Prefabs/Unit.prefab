@@ -14,7 +14,7 @@ GameObject:
   - 60: {fileID: 6067294}
   m_Layer: 0
   m_Name: Unit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +85,8 @@ MonoBehaviour:
   speed: 5
   movetype: 0
   alignment: 0
+  nextTarget: {x: 0, y: 0, z: 0}
+  target: []
   occupied: 0
 --- !u!212 &21206998
 SpriteRenderer:
@@ -138,6 +140,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
