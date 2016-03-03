@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour {
     private TowerScript parentTower;
     private Transform targetTranform;
     private string enemyTag = "Enemy";
+	private float life = 10;
 
     public void Setup(TowerScript parent, Transform target, float speed, float damage) 
     {
@@ -15,6 +16,7 @@ public class BulletScript : MonoBehaviour {
         targetTranform = target;
         bulletSpeed = speed;
         bulletDamage = damage;
+		StartCoroutine(LifeTime());
     }
 	
 	void Update () 
@@ -29,10 +31,22 @@ public class BulletScript : MonoBehaviour {
     {
         if (otherCollider.gameObject.tag == enemyTag) 
         {
-            parentTower.RemoveDeadBullet(transform);
-            Destroy(gameObject); //TODO implement some sort of method for all moral units to take damage
+			Die();
         }
     }
+
+	IEnumerator LifeTime()
+	{
+		yield return new WaitForSeconds(life);
+		Die();
+	}
+
+	void Die()
+	{
+		StopAllCoroutines();
+		parentTower.RemoveDeadBullet(transform);
+		Destroy(gameObject); //TODO implement some sort of method for all moral units to take damage
+	}
 
 
 }
