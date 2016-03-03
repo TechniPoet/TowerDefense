@@ -96,6 +96,7 @@ GameObject:
   - 212: {fileID: 186518838}
   - 60: {fileID: 186518840}
   - 50: {fileID: 186518841}
+  - 61: {fileID: 186518842}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Enemy
@@ -183,6 +184,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &186518842
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 186518837}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
 --- !u!1 &629781748
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +230,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
 --- !u!114 &629781750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7af18153b057cf4aa6c0d8d18f2b465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDetectionRadius: 1
+  bulletPrefab: {fileID: 406852, guid: e2198f91078b4bc4589a89663914a099, type: 2}
+  enemyDetectionRadius: 2
+  maxBulletCount: 5
+  bulletCooldown: 1
 --- !u!212 &629781751
 SpriteRenderer:
   m_ObjectHideFlags: 0

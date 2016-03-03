@@ -9,10 +9,13 @@ public class TowerScript : MonoBehaviour {
     public Transform bulletPrefab;
     public float enemyDetectionRadius = 1f;
     public int maxBulletCount = 5;
+	public float bulletCooldown;
     private const string enemyTag = "Enemy";
     private CircleCollider2D circleCollider2D;
     private List<Transform> enemiesInRange;
     private List<Transform> bullets;
+
+	bool canShoot = true;
 
 	void Start () 
     {
@@ -57,13 +60,14 @@ public class TowerScript : MonoBehaviour {
 
     void AttackEnemy(Transform enemyTransform) 
     {
-        if (bullets.Count < maxBulletCount) 
+        if (bullets.Count < maxBulletCount && canShoot) 
         {
             var bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity) as Transform;
             if (bullet != null) 
             {
                 bullets.Add(bullet);
                 bullet.GetComponent<BulletScript>().Setup(this, enemyTransform, 5, 1);
+				StartCoroutine(CoolDown());
             }
         }
     }
@@ -73,4 +77,10 @@ public class TowerScript : MonoBehaviour {
         bullets.Remove(bullet);
     }
 
+	IEnumerator CoolDown()
+	{
+		canShoot = false;
+		yield return new WaitForSeconds(bulletCooldown);
+		canShoot = true;
+	}
 }
