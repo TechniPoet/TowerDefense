@@ -7,8 +7,12 @@ public class Unit : Mortal {
 
 
 	public float speed;
-	public enum movementType{ ground, fly };
+	enum movementType{ ground, fly };
+	public int mvt;
 	//private string direction;
+
+	enum faction{ player, ai };
+	public int alignment = (int)faction.ai;
 
 	private Vector3 nextTarget;
 
@@ -20,6 +24,7 @@ public class Unit : Mortal {
 
 	void Awake(){
 
+		//mvt = (int)movementType.ground;
 		isDead = false;
 		target = new List<Vector3> ();
 		occupied = false;
@@ -64,10 +69,11 @@ public class Unit : Mortal {
 	}
 
 	//sets up a unit
-	void Setup (int maxHealth, int mvtType, float speed){
+	void Setup (int maxHealth, int mvtType, int faction, float speed){
 		this.maxHealth = maxHealth;
 		this.currHealth = maxHealth;
-		//movementType + mvtType;
+		this.mvt = mvtType;
+		this.alignment = faction;
 		this.speed = speed;
 	}
 
@@ -76,11 +82,13 @@ public class Unit : Mortal {
 
 		Debug.Log (hit.occupied);
 
-		if (!hit.occupied && !occupied) {
-			hit.occupied = true;
-			hit.obstruction = this;
-			obstruction = hit;
-			occupied = true;
+		if (hit.alignment != alignment) {
+			if (!hit.occupied && !occupied) {
+				hit.occupied = true;
+				hit.obstruction = this;
+				obstruction = hit;
+				occupied = true;
+			}
 		}
 	}
 
