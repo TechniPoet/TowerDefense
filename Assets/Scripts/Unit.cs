@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Unit : Mortal {
 
 
+	public Transform sightStart;
+	public Transform sightEnd;
 
 	public float speed;
 	public enum movementType{ ground, fly };
@@ -36,6 +38,9 @@ public class Unit : Mortal {
 	
 	// Update is called once per frame
 	void Update () {
+
+		Raycasting ();
+
 		//Debug.Log(Input.mousePosition);
 		Debug.Log(Input.GetMouseButtonDown(0));
 		if (obstruction != null) {
@@ -55,6 +60,10 @@ public class Unit : Mortal {
 		//if there are still target positions in the path and the unit is not occupied then move towards 
 		//the first position in a list of targets
 		if (target.Count != 0 && !occupied) {
+
+			Vector3 dir = transform.position - target[0];
+			Quaternion rotation = Quaternion.LookRotation(dir);
+			transform.rotation = rotation;
 
 			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
 
@@ -80,6 +89,11 @@ public class Unit : Mortal {
 		this.alignment = faction;
 		this.speed = speed;
 	}
+
+	void Raycasting(){
+		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
+	}
+
 	/*
 	void OnCollisionEnter2D(Collision2D col){
 		Unit hit = col.gameObject.GetComponent<Unit>();
