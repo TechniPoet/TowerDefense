@@ -7,6 +7,7 @@ public class Unit : Mortal {
 
 	public Transform sightStart;
 	public Transform sightEnd;
+	public float vision;
 
 	public float speed;
 	public enum movementType{ ground, fly };
@@ -34,6 +35,8 @@ public class Unit : Mortal {
 		target = new List<Vector3> ();
 		occupied = false;
 
+		Debug.Log (sightEnd.position.x);
+
 	}
 	
 	// Update is called once per frame
@@ -42,7 +45,7 @@ public class Unit : Mortal {
 		Raycasting ();
 
 		//Debug.Log(Input.mousePosition);
-		Debug.Log(Input.GetMouseButtonDown(0));
+		//Debug.Log(Input.GetMouseButtonDown(0));
 		if (obstruction != null) {
 			if (obstruction.isDead) {
 				//occupied = false;
@@ -55,21 +58,55 @@ public class Unit : Mortal {
 			nextTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			nextTarget.z = 0f;
 			target.Add(nextTarget);
+
+			if (target.Count == 1){
+				Vector3 dir = transform.position - target[0];
+				//Debug.Log(dir.ToString());
+				Quaternion rotation = Quaternion.LookRotation(dir);
+				rotation.z = 0f;
+				rotation.w = 0f;
+				//Debug.Log(rotation.ToString());
+				transform.rotation = rotation;
+				//Debug.Log(transform.rotation.ToString());
+
+				if (transform.position.x > target [0].x) {
+					sightEnd.localPosition = new Vector3(vision, 0f, 0f);
+				}
+				if (transform.position.x < target [0].x) {
+					sightEnd.localPosition = new Vector3(vision * -1, 0f, 0f);
+				}
+			}
 		}
 
 		//if there are still target positions in the path and the unit is not occupied then move towards 
 		//the first position in a list of targets
 		if (target.Count != 0 && !occupied) {
 
-			Vector3 dir = transform.position - target[0];
-			Quaternion rotation = Quaternion.LookRotation(dir);
-			transform.rotation = rotation;
+
 
 			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
 
 			//if the unit has reached the first position then remove that position from the list of targets
 			if (/*transform.position.Equals(target [0])*/ Vector3.Distance(transform.position, target[0]) < .2f) {
 				target.RemoveAt(0);
+
+				if(target.Count != 0){
+					Vector3 dir = transform.position - target[0];
+					//Debug.Log(dir.ToString());
+					Quaternion rotation = Quaternion.LookRotation(dir);
+					rotation.z = 0f;
+					rotation.w = 0f;
+					//Debug.Log(rotation.ToString());
+					transform.rotation = rotation;
+					//Debug.Log(transform.rotation.ToString());
+
+					if (transform.position.x > target [0].x) {
+						sightEnd.localPosition = new Vector3(vision, 0f, 0f);
+					}
+					if (transform.position.x < target [0].x) {
+						sightEnd.localPosition = new Vector3(vision -1, 0f, 0f);
+					}
+				}
 			}
 		}
 
