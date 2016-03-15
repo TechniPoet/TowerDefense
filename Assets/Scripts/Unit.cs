@@ -26,7 +26,7 @@ public class Unit : Mortal {
 	private Unit obstruction;
 
 
-	Quaternion direction;
+	private string enemyLayer;
 
 	void Awake(){
 
@@ -35,8 +35,10 @@ public class Unit : Mortal {
 		target = new List<Vector3> ();
 		occupied = false;
 
-		Debug.Log (sightEnd.position.x);
-
+		if (this.gameObject.layer == 8) {
+			enemyLayer = "Player";
+		} else
+			enemyLayer = "AI";
 	}
 	
 	// Update is called once per frame
@@ -69,9 +71,9 @@ public class Unit : Mortal {
 				transform.rotation = rotation;
 				//Debug.Log(transform.rotation.ToString());
 
-				if (transform.position.x > target [0].x) {
+				/*if (transform.position.x > target [0].x) {
 					sightEnd.localPosition = new Vector3(vision, 0f, 0f);
-				}
+				}*/
 				if (transform.position.x < target [0].x) {
 					sightEnd.localPosition = new Vector3(vision * -1, 0f, 0f);
 				}
@@ -129,6 +131,27 @@ public class Unit : Mortal {
 
 	void Raycasting(){
 		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
+
+		Collider2D col = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player")).collider;
+
+		if (col != null) {
+			Unit hit = col.gameObject.GetComponent<Unit> ();
+			if (hit.alignment != alignment) {
+				if (!hit.occupied && !occupied) {
+					hit.occupied = true;
+					hit.obstruction = this;
+					obstruction = hit;
+					occupied = true;
+				}
+			}
+		} else {
+			if (obstruction != null) {
+				obstruction.occupied = false;
+				obstruction.obstruction = null;
+			}
+			obstruction = null;
+			occupied = false;
+		}
 	}
 
 	/*
