@@ -24,11 +24,14 @@ public class Unit : Mortal {
 
 	public bool occupied;
 	private Unit obstruction;
-
+	private Unit enemySeen;
 
 	private string enemyLayer;
 
-	void Awake(){
+	public Transform visionCenter;
+	public float visionRadius;
+
+	public virtual void Awake(){
 
 		//mvt = (int)movementType.ground;
 		isDead = false;
@@ -39,12 +42,15 @@ public class Unit : Mortal {
 			enemyLayer = "Player";
 		} else
 			enemyLayer = "AI";
+
+		visionRadius = Vector3.Distance(sightStart.position, visionCenter.position);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 
-		Raycasting ();
+		EngageRaycast ();
+		VisionRaycast ();
 
 		//Debug.Log(Input.mousePosition);
 		//Debug.Log(Input.GetMouseButtonDown(0));
@@ -71,11 +77,13 @@ public class Unit : Mortal {
 				transform.rotation = rotation;
 				//Debug.Log(transform.rotation.ToString());
 
-				/*if (transform.position.x > target [0].x) {
+				if (transform.position.x > target [0].x) {
 					sightEnd.localPosition = new Vector3(vision, 0f, 0f);
-				}*/
+					visionCenter.localPosition = new Vector3(visionRadius, 0f, 0f);
+				}
 				if (transform.position.x < target [0].x) {
 					sightEnd.localPosition = new Vector3(vision * -1, 0f, 0f);
+					visionCenter.localPosition = new Vector3(visionRadius * -1, 0f, 0f);
 				}
 			}
 		}
@@ -84,29 +92,35 @@ public class Unit : Mortal {
 		//the first position in a list of targets
 		if (target.Count != 0 && !occupied) {
 
+			//unit first moves towards an enemy that it sees
+			if (enemySeen != null) {
+				transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+			}else{
 
+				transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
 
-			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
+				//if the unit has reached the first position then remove that position from the list of targets
+				if (/*transform.position.Equals(target [0])*/ Vector3.Distance (transform.position, target [0]) < .2f) {
+					target.RemoveAt (0);
 
-			//if the unit has reached the first position then remove that position from the list of targets
-			if (/*transform.position.Equals(target [0])*/ Vector3.Distance(transform.position, target[0]) < .2f) {
-				target.RemoveAt(0);
+					if (target.Count != 0) {
+						Vector3 dir = transform.position - target [0];
+						//Debug.Log(dir.ToString());
+						Quaternion rotation = Quaternion.LookRotation (dir);
+						rotation.z = 0f;
+						rotation.w = 0f;
+						//Debug.Log(rotation.ToString());
+						transform.rotation = rotation;
+						//Debug.Log(transform.rotation.ToString());
 
-				if(target.Count != 0){
-					Vector3 dir = transform.position - target[0];
-					//Debug.Log(dir.ToString());
-					Quaternion rotation = Quaternion.LookRotation(dir);
-					rotation.z = 0f;
-					rotation.w = 0f;
-					//Debug.Log(rotation.ToString());
-					transform.rotation = rotation;
-					//Debug.Log(transform.rotation.ToString());
-
-					if (transform.position.x > target [0].x) {
-						sightEnd.localPosition = new Vector3(vision, 0f, 0f);
-					}
-					if (transform.position.x < target [0].x) {
-						sightEnd.localPosition = new Vector3(vision -1, 0f, 0f);
+						if (transform.position.x > target [0].x) {
+							sightEnd.localPosition = new Vector3 (vision, 0f, 0f);
+							visionCenter.localPosition = new Vector3 (visionRadius, 0f, 0f);
+						}
+						if (transform.position.x < target [0].x) {
+							sightEnd.localPosition = new Vector3 (vision - 1, 0f, 0f);
+							visionCenter.localPosition = new Vector3 (visionRadius * -1, 0f, 0f);
+						}
 					}
 				}
 			}
@@ -129,10 +143,10 @@ public class Unit : Mortal {
 		this.speed = speed;
 	}
 
-	void Raycasting(){
+	void EngageRaycast(){
 		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
 
-		Collider2D col = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Player")).collider;
+		Collider2D col = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
 
 		if (col != null) {
 			Unit hit = col.gameObject.GetComponent<Unit> ();
@@ -152,6 +166,20 @@ public class Unit : Mortal {
 			obstruction = null;
 			occupied = false;
 		}
+	}
+
+	void VisionRaycast(){
+		DebugExtension.DebugCircle (visionCenter.position, Vector3.back, visionRadius, 0f, false);
+
+		Vector2 origin = new Vector2 (visionCenter.position.x, visionCenter.position.y);
+
+		Collider2D col = Physics2D.CircleCast (origin, visionRadius, origin, Mathf.Infinity, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
+
+
+		if (col != null) {
+			enemySeen = col.gameObject.GetComponent<Unit> ();
+		} else
+			enemySeen = null;
 	}
 
 	/*

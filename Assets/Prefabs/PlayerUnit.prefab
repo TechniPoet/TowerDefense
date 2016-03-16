@@ -49,6 +49,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &193184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 492012}
+  m_Layer: 9
+  m_Name: VisionCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &452702
 Transform:
   m_ObjectHideFlags: 1
@@ -56,11 +71,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.008170387, y: 0.13072617, z: 0}
+  m_LocalPosition: {x: 0.43878606, y: 0.27334213, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459622}
   - {fileID: 457886}
+  - {fileID: 492012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &457886
@@ -87,6 +103,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452702}
   m_RootOrder: 0
+--- !u!4 &492012
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 452702}
+  m_RootOrder: 2
 --- !u!50 &5037748
 Rigidbody2D:
   serializedVersion: 2
@@ -147,6 +175,8 @@ MonoBehaviour:
   nextTarget: {x: 0, y: 0, z: 0}
   target: []
   occupied: 0
+  visionCenter: {fileID: 492012}
+  visionRadius: 0
 --- !u!212 &21206998
 SpriteRenderer:
   m_ObjectHideFlags: 1
