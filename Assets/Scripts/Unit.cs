@@ -30,6 +30,7 @@ public class Unit : Mortal {
 
 	public Transform visionCenter;
 	public float visionRadius;
+	public bool ignoreVision;
 
 	public virtual void Awake(){
 
@@ -37,6 +38,7 @@ public class Unit : Mortal {
 		isDead = false;
 		target = new List<Vector3> ();
 		occupied = false;
+		ignoreVision = false;
 
 		if (this.gameObject.layer == 8) {
 			enemyLayer = "Player";
@@ -88,14 +90,13 @@ public class Unit : Mortal {
 			}
 		}
 
-		//if there are still target positions in the path and the unit is not occupied then move towards 
-		//the first position in a list of targets
-		if (target.Count != 0 && !occupied) {
-
-			//unit first moves towards an enemy that it sees
-			if (enemySeen != null) {
-				transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
-			}else{
+		//move towards an enemy in view
+		if ((enemySeen != null) && !ignoreVision) {
+			transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+		}else {
+			//if there are still target positions in the path and the unit is not occupied then move towards 
+			//the first position in a list of targets
+			if (target.Count != 0 && !occupied) {
 
 				transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
 
