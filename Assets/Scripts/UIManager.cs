@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
 	public Text healthText;
 	public Text goldText;
 	public Text waveText;
+
+	public GameObject pauseMenu;
 	
 	void Start () {
 		healthCount = 0;
@@ -27,6 +29,7 @@ public class UIManager : MonoBehaviour {
 		UpdateHealthText ();
 		UpdateGoldText ();
 		UpdateWaveText ();
+		ScanForKeyStroke();
 	}
 
 	void UpdateHealthText ()
@@ -42,6 +45,25 @@ public class UIManager : MonoBehaviour {
 	void UpdateWaveText ()
 	{
 		waveText.text = "WAVE   " + currentWave.ToString () + " / " + maxWave.ToString ();
+	}
+
+	void ScanForKeyStroke()
+	{
+		if (Input.GetKeyDown ("escape") || Input.GetKeyDown ("p")) {
+			TogglePauseMenu ();
+		}
+	}
+
+	public void TogglePauseMenu ()
+	{
+		if (pauseMenu.activeSelf) {	// resume game
+			pauseMenu.SetActive (false);
+			Time.timeScale = 1.0f;
+		}
+		else {	// pause game
+			pauseMenu.SetActive (true);
+			Time.timeScale = 0.0f;
+		}
 	}
 
 }
