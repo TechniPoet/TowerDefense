@@ -23,10 +23,10 @@ public class Unit : Mortal {
 	public List<Vector3> target;
 
 	public bool occupied;
-	private Unit obstruction;
-	private Unit enemySeen;
+	protected Unit obstruction;
+	protected Unit enemySeen;
 
-	private string enemyLayer;
+	string enemyLayer;
 
 	public Transform visionCenter;
 	public float visionRadius;
@@ -62,37 +62,12 @@ public class Unit : Mortal {
 			}
 		}
 
-		//add position to unit's path on mouse click
-		if (Input.GetMouseButtonDown(0))
-		{
-			nextTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			nextTarget.z = 0f;
-			target.Add(nextTarget);
 
-			if (target.Count == 1){
-				Vector3 dir = transform.position - target[0];
-				//Debug.Log(dir.ToString());
-				Quaternion rotation = Quaternion.LookRotation(dir);
-				rotation.z = 0f;
-				rotation.w = 0f;
-				//Debug.Log(rotation.ToString());
-				transform.rotation = rotation;
-				//Debug.Log(transform.rotation.ToString());
-
-				if (transform.position.x > target [0].x) {
-					sightEnd.localPosition = new Vector3(vision, 0f, 0f);
-					visionCenter.localPosition = new Vector3(visionRadius, 0f, 0f);
-				}
-				if (transform.position.x < target [0].x) {
-					sightEnd.localPosition = new Vector3(vision * -1, 0f, 0f);
-					visionCenter.localPosition = new Vector3(visionRadius * -1, 0f, 0f);
-				}
-			}
-		}
 
 		//move towards an enemy in view
-		if ((enemySeen != null) && !ignoreVision) {
-			transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+		if ((enemySeen != null) && !ignoreVision && !occupied) {
+			if(!enemySeen.occupied)
+				transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
 		}else {
 			//if there are still target positions in the path and the unit is not occupied then move towards 
 			//the first position in a list of targets
@@ -144,7 +119,7 @@ public class Unit : Mortal {
 		this.speed = speed;
 	}
 
-	void EngageRaycast(){
+	protected void EngageRaycast(){
 		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
 
 		Collider2D col = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
@@ -169,7 +144,7 @@ public class Unit : Mortal {
 		}
 	}
 
-	void VisionRaycast(){
+	protected void VisionRaycast(){
 		DebugExtension.DebugCircle (visionCenter.position, Vector3.back, visionRadius, 0f, false);
 
 		Vector2 origin = new Vector2 (visionCenter.position.x, visionCenter.position.y);

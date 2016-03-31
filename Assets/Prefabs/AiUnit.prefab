@@ -54,9 +54,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 458064}
   - 212: {fileID: 21284172}
-  - 114: {fileID: 11439898}
   - 50: {fileID: 5027938}
   - 60: {fileID: 6006582}
+  - 114: {fileID: 11489512}
   m_Layer: 8
   m_Name: AiUnit
   m_TagString: Enemy
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.503096, y: 0.302115, z: 0}
+  m_LocalPosition: {x: -2.25, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486136}
@@ -153,7 +153,7 @@ PolygonCollider2D:
       - {x: 0.25, y: -0.17999999}
       - {x: 0.19999999, y: -0.01}
       - {x: 0.04, y: 0.25}
---- !u!114 &11439898
+--- !u!114 &11489512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 194578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590d8806d21084619bf7e21b1a5fee77, type: 3}
+  m_Script: {fileID: 11500000, guid: 56bc870fdfa114cae930f3c75082f116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
@@ -169,7 +169,7 @@ MonoBehaviour:
   sightStart: {fileID: 486136}
   sightEnd: {fileID: 414938}
   vision: 0.489
-  speed: 5
+  speed: 2
   movetype: 0
   alignment: 1
   nextTarget: {x: 0, y: 0, z: 0}
@@ -177,6 +177,7 @@ MonoBehaviour:
   occupied: 0
   visionCenter: {fileID: 491106}
   visionRadius: 0
+  ignoreVision: 0
 --- !u!212 &21284172
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -204,7 +205,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6785403661dbc66499c8ffc6d07fa7bf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85294116, g: 0.20696366, b: 0.20696366, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
