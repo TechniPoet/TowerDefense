@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Mortal : MonoBehaviour {
@@ -7,7 +7,7 @@ public class Mortal : MonoBehaviour {
 	protected int currHealth;
 	public bool isDead = false;
 	
-	void update(){
+	void Update(){
 
 		//kill mortal if health drops to/below zero
 		if (currHealth <= 0) {
@@ -17,7 +17,7 @@ public class Mortal : MonoBehaviour {
 	}
 
 	//deals damage to mortal
-	void takeDamage(int dmg){
+	public void takeDamage(int dmg){
 		currHealth -= dmg;
 	}
 
