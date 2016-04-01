@@ -23,7 +23,7 @@ public class Unit : Mortal {
 	public List<Vector3> target;
 
 	public bool occupied;
-	protected Unit obstruction;
+	public Unit obstruction;
 	protected Unit enemySeen;
 
 	string enemyLayer;
@@ -31,6 +31,8 @@ public class Unit : Mortal {
 	public Transform visionCenter;
 	public float visionRadius;
 	public bool ignoreVision;
+
+	public Collider2D collision;
 
 	public virtual void Awake(){
 
@@ -65,41 +67,15 @@ public class Unit : Mortal {
 
 
 		//move towards an enemy in view
-		if ((enemySeen != null) && !ignoreVision && !occupied) {
-			if(!enemySeen.occupied)
-				transform.position = Vector3.MoveTowards(transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+		if ((enemySeen != null) && !ignoreVision && (obstruction == null) && !occupied) {
+			if (!enemySeen.occupied) {
+				transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+			} else
+				MoveToNext ();
 		}else {
 			//if there are still target positions in the path and the unit is not occupied then move towards 
 			//the first position in a list of targets
-			if (target.Count != 0 && !occupied) {
-
-				transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
-
-				//if the unit has reached the first position then remove that position from the list of targets
-				if (/*transform.position.Equals(target [0])*/ Vector3.Distance (transform.position, target [0]) < .2f) {
-					target.RemoveAt (0);
-
-					if (target.Count != 0) {
-						Vector3 dir = transform.position - target [0];
-						//Debug.Log(dir.ToString());
-						Quaternion rotation = Quaternion.LookRotation (dir);
-						rotation.z = 0f;
-						rotation.w = 0f;
-						//Debug.Log(rotation.ToString());
-						transform.rotation = rotation;
-						//Debug.Log(transform.rotation.ToString());
-
-						if (transform.position.x > target [0].x) {
-							sightEnd.localPosition = new Vector3 (vision, 0f, 0f);
-							visionCenter.localPosition = new Vector3 (visionRadius, 0f, 0f);
-						}
-						if (transform.position.x < target [0].x) {
-							sightEnd.localPosition = new Vector3 (vision - 1, 0f, 0f);
-							visionCenter.localPosition = new Vector3 (visionRadius * -1, 0f, 0f);
-						}
-					}
-				}
-			}
+			MoveToNext();
 		}
 
 		if (isDead == true) {
@@ -119,14 +95,16 @@ public class Unit : Mortal {
 		this.speed = speed;
 	}
 
-	protected void EngageRaycast(){
+	public virtual void EngageRaycast(){
 		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
 
-		Collider2D col = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
+		collision = Physics2D.Linecast (sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
 
-		if (col != null) {
-			Unit hit = col.gameObject.GetComponent<Unit> ();
+		if (collision != null) {
+			Unit hit = collision.gameObject.GetComponent<Unit> ();
+			//Debug.Log ("col != null");
 			if (hit.alignment != alignment) {
+				//Debug.Log ("hit.alignment != alignment");
 				if (!hit.occupied && !occupied) {
 					hit.occupied = true;
 					hit.obstruction = this;
@@ -134,28 +112,67 @@ public class Unit : Mortal {
 					occupied = true;
 				}
 			}
-		} else {
-			if (obstruction != null) {
-				obstruction.occupied = false;
-				obstruction.obstruction = null;
-			}
+		} else if (obstruction == null) {
+			occupied = false;
+		} else if (obstruction.collision != null) {
+			obstruction.occupied = true;
+			obstruction.obstruction = this;
+			obstruction = obstruction;
+			occupied = true;
+		} else if (obstruction.collision == null) {
+			obstruction.occupied = false;
+			obstruction.obstruction = null;
 			obstruction = null;
 			occupied = false;
 		}
+
 	}
 
-	protected void VisionRaycast(){
+	public virtual void VisionRaycast(){
 		DebugExtension.DebugCircle (visionCenter.position, Vector3.back, visionRadius, 0f, false);
 
 		Vector2 origin = new Vector2 (visionCenter.position.x, visionCenter.position.y);
 
-		Collider2D col = Physics2D.CircleCast (origin, visionRadius, origin, Mathf.Infinity, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
+		Collider2D col = Physics2D.CircleCast (origin, visionRadius, origin, 0.0f, 1 << LayerMask.NameToLayer(enemyLayer)).collider;
 
 
 		if (col != null) {
 			enemySeen = col.gameObject.GetComponent<Unit> ();
+
 		} else
 			enemySeen = null;
+	}
+
+	public virtual void MoveToNext(){
+		if (target.Count != 0 && !occupied) {
+
+			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
+
+			//if the unit has reached the first position then remove that position from the list of targets
+			if (/*transform.position.Equals(target [0])*/ Vector3.Distance (transform.position, target [0]) < .2f) {
+				target.RemoveAt (0);
+
+				if (target.Count != 0) {
+					Vector3 dir = transform.position - target [0];
+					//Debug.Log(dir.ToString());
+					Quaternion rotation = Quaternion.LookRotation (dir);
+					rotation.z = 0f;
+					rotation.w = 0f;
+					//Debug.Log(rotation.ToString());
+					transform.rotation = rotation;
+					//Debug.Log(transform.rotation.ToString());
+
+					if (transform.position.x > target [0].x) {
+						sightEnd.localPosition = new Vector3 (vision, 0f, 0f);
+						visionCenter.localPosition = new Vector3 (visionRadius, 0f, 0f);
+					}
+					if (transform.position.x < target [0].x) {
+						sightEnd.localPosition = new Vector3 (vision - 1, 0f, 0f);
+						visionCenter.localPosition = new Vector3 (visionRadius * -1, 0f, 0f);
+					}
+				}
+			}
+		}
 	}
 
 	/*
