@@ -164,11 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a438fbe3c6ff84005a0ef0b00fb8b41e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 100
+  currHealth: 100
   isDead: 0
   sightStart: {fileID: 459622}
   sightEnd: {fileID: 457886}
   vision: 0.489
+  atk: 5
+  atkCooldown: 1
   speed: 1
   movetype: 0
   alignment: 0
@@ -179,6 +182,7 @@ MonoBehaviour:
   visionCenter: {fileID: 492012}
   visionRadius: 0
   ignoreVision: 0
+  collision: {fileID: 0}
   rallyPos: {x: 0, y: 0, z: 0}
 --- !u!212 &21206998
 SpriteRenderer:

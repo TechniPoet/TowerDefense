@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.25, y: -0.59, z: 0}
+  m_LocalPosition: {x: -7.011278, y: 0.55447006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486136}
@@ -164,20 +164,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bc870fdfa114cae930f3c75082f116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 100
+  currHealth: 100
   isDead: 0
   sightStart: {fileID: 486136}
   sightEnd: {fileID: 414938}
   vision: 0.489
+  atk: 5
+  atkCooldown: 1
   speed: 2
   movetype: 0
   alignment: 1
   nextTarget: {x: 0, y: 0, z: 0}
   target: []
   occupied: 0
+  obstruction: {fileID: 0}
   visionCenter: {fileID: 491106}
   visionRadius: 0
   ignoreVision: 0
+  collision: {fileID: 0}
 --- !u!212 &21284172
 SpriteRenderer:
   m_ObjectHideFlags: 1

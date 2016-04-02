@@ -24,6 +24,13 @@ public class AlliedUnit : Unit {
 				}
 			}
 		}
+		else
+		{
+			if (canAtk)
+			{
+				Attack(enemySeen);
+			}
+		}
 	}
 
 	public override void EngageRaycast ()

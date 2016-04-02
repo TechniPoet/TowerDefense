@@ -9,12 +9,17 @@ public class Unit : Mortal {
 	public Transform sightEnd;
 	public float vision;
 
+	public float atk = 5;
+	public float atkCooldown = 1;
+	public bool canAtk = true;
+
 	public float speed;
 	public enum movementType{ ground, fly };
 	public movementType movetype;
 	//private string direction;
 
 	public enum faction{ player, ai };
+	
 	public faction alignment;
 
 	public Vector3 nextTarget;
@@ -52,10 +57,10 @@ public class Unit : Mortal {
 	
 	// Update is called once per frame
 	public virtual void Update () {
-
+		base.Update();
 		EngageRaycast ();
 		VisionRaycast ();
-		
+
 		//move towards an enemy in view
 		if ((enemySeen != null) && !ignoreVision && (obstruction == null) && !occupied) {
 			if (!enemySeen.occupied) {
@@ -68,13 +73,12 @@ public class Unit : Mortal {
 			MoveToNext();
 		}
 
-		if (isDead == true) {
+		if (isDead) {
 			
 			Destroy (gameObject);
 		}
-
-
 	}
+	
 
 	//sets up a unit
 	void Setup (int maxHealth, movementType mvtType, faction faction, float speed){
@@ -85,6 +89,10 @@ public class Unit : Mortal {
 		this.speed = speed;
 	}
 
+
+	/// <summary>
+	/// 
+	/// </summary>
 	public virtual void EngageRaycast(){
 		Debug.DrawLine (sightStart.position, sightEnd.position, Color.green);
 
@@ -128,7 +136,6 @@ public class Unit : Mortal {
 
 		if (col != null) {
 			enemySeen = col.gameObject.GetComponent<Unit> ();
-
 		} else
 			enemySeen = null;
 	}
@@ -165,6 +172,19 @@ public class Unit : Mortal {
 		}
 	}
 
+
+	protected void Attack(Mortal target)
+	{
+		StartCoroutine(StartAtkCoolDown());
+		target.takeDamage(atk);
+	}
+
+	protected IEnumerator StartAtkCoolDown()
+	{
+		canAtk = false;
+		yield return new WaitForSeconds(atkCooldown);
+		canAtk = true;
+	}
 	/*
 	void OnCollisionEnter2D(Collision2D col){
 		Unit hit = col.gameObject.GetComponent<Unit>();
