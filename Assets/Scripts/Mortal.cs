@@ -23,10 +23,7 @@ public class Mortal : MonoBehaviour {
 
 	//recovers damage for mortal
 	void heal(int valueHealed){
-		int healed = currHealth + valueHealed;
-
-		if (healed > maxHealth) {
-			currHealth = maxHealth;
-		} else {currHealth = healed;}
+		currHealth += valueHealed;
+		Mathf.Clamp(currHealth, 0, maxHealth);
 	}
 }

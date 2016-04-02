@@ -55,17 +55,7 @@ public class Unit : Mortal {
 
 		EngageRaycast ();
 		VisionRaycast ();
-
-		//Debug.Log(Input.mousePosition);
-		//Debug.Log(Input.GetMouseButtonDown(0));
-		if (obstruction != null) {
-			if (obstruction.isDead) {
-				//occupied = false;
-			}
-		}
-
-
-
+		
 		//move towards an enemy in view
 		if ((enemySeen != null) && !ignoreVision && (obstruction == null) && !occupied) {
 			if (!enemySeen.occupied) {
