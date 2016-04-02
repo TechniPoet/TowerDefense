@@ -3,6 +3,11 @@ using System.Collections;
 
 public class VariableHouse{}
 
+public enum units
+{
+	SIMPLE_GROUND_UNIT,
+}
+
 [System.Serializable]
 public class BaseUnitVariables
 {
