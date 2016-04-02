@@ -81,12 +81,14 @@ public class Unit : Mortal {
 	
 
 	//sets up a unit
-	void Setup (int maxHealth, movementType mvtType, faction faction, float speed){
+	public void Setup (int maxHealth, movementType mvtType, faction faction, float speed, float newAtk, float newCooldown){
 		this.maxHealth = maxHealth;
 		this.currHealth = maxHealth;
 		this.movetype = mvtType;
 		this.alignment = faction;
 		this.speed = speed;
+		this.atk = newAtk;
+		this.atkCooldown = newCooldown;
 	}
 
 
