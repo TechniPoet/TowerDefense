@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript : BulletScript {
+public class SlowBulletScript : BulletScript {
     public float slowFactor = .5f;
     public float slowDuration = 5f;
 
