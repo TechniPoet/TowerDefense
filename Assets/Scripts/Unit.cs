@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 
 public class Unit : Mortal {
 
@@ -30,6 +31,8 @@ public class Unit : Mortal {
 	public bool occupied;
 	public Unit obstruction;
 	protected Unit enemySeen;
+    private bool isSlowed = false;
+    private float slowFactor = 1;
 
 	string enemyLayer;
 
@@ -145,7 +148,7 @@ public class Unit : Mortal {
 	public virtual void MoveToNext(){
 		if (target.Count != 0 && !occupied) {
 
-			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime * slowFactor);
 
 			//if the unit has reached the first position then remove that position from the list of targets
 			if (/*transform.position.Equals(target [0])*/ Vector3.Distance (transform.position, target [0]) < .2f) {
@@ -187,6 +190,7 @@ public class Unit : Mortal {
 		yield return new WaitForSeconds(atkCooldown);
 		canAtk = true;
 	}
+
 	/*
 	void OnCollisionEnter2D(Collision2D col){
 		Unit hit = col.gameObject.GetComponent<Unit>();
@@ -215,5 +219,16 @@ public class Unit : Mortal {
 
 	}*/
 
+    public void Slow(float slowDuration, float slowFactor) {
+        StopCoroutine("SlowLifetime");
+        StartCoroutine(SlowLifetime(slowDuration, slowFactor));
+    }
 
+    IEnumerator SlowLifetime(float slowDuration, float slowFactor) {
+        isSlowed = true;
+        this.slowFactor = slowFactor;
+        yield return new WaitForSeconds(slowDuration);
+        isSlowed = false;
+        this.slowFactor = 1;
+    }
 }
