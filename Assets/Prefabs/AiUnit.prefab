@@ -172,6 +172,7 @@ MonoBehaviour:
   vision: 0.489
   atk: 5
   atkCooldown: 1
+  canAtk: 1
   speed: 2
   movetype: 0
   alignment: 1
@@ -183,6 +184,7 @@ MonoBehaviour:
   visionRadius: 0
   ignoreVision: 0
   collision: {fileID: 0}
+  wayPoints: []
 --- !u!212 &21284172
 SpriteRenderer:
   m_ObjectHideFlags: 1

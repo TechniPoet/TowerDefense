@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 public class Unit : Mortal {
 
@@ -225,8 +224,12 @@ public class Unit : Mortal {
     }
 
     IEnumerator SlowLifetime(float slowDuration, float slowFactor) {
-        isSlowed = true;
-        this.slowFactor = slowFactor;
+		StopCoroutine("SlowLifetime");
+		isSlowed = true;
+		if (this.slowFactor < slowFactor)
+		{
+			this.slowFactor = slowFactor;
+		}
         yield return new WaitForSeconds(slowDuration);
         isSlowed = false;
         this.slowFactor = 1;

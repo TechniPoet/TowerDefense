@@ -3,9 +3,15 @@ using System.Collections;
 
 public class EnemyUnit : Unit {
 
+	public Transform[] wayPoints;
+
 	// Use this for initialization
 	void Start () {
 		base.Awake ();
+		for (int i = 0; i < wayPoints.Length; i++)
+		{
+			target.Add(wayPoints[i].position);
+		}
 	}
 	
 	// Update is called once per frame
@@ -15,6 +21,7 @@ public class EnemyUnit : Unit {
 		{
 			Attack(enemySeen);
 		}
+		/*
 		//add position to unit's path on mouse click
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -42,5 +49,6 @@ public class EnemyUnit : Unit {
 				}
 			}
 		}
+		*/
 	}
 }
