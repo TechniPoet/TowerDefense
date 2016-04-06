@@ -11,10 +11,12 @@ public class EnemyUnit : Unit {
 	// Update is called once per frame
 	public new void Update () {
 		base.Update ();
+
+		/*
 		if (obstruction != null && enemySeen != null && canAtk)
 		{
 			Attack(enemySeen);
-		}
+		}*/
 		//add position to unit's path on mouse click
 		if (Input.GetMouseButtonDown(0))
 		{

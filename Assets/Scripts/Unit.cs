@@ -19,7 +19,10 @@ public class Unit : Mortal {
 	//private string direction;
 
 	public enum faction{ player, ai };
-	
+
+	public enum state{ idle, attack, move, enemySighted };
+	public state currentState;
+
 	public faction alignment;
 
 	public Vector3 nextTarget;
@@ -46,6 +49,7 @@ public class Unit : Mortal {
 		target = new List<Vector3> ();
 		occupied = false;
 		ignoreVision = false;
+		currentState = state.idle;
 
 		if (this.gameObject.layer == 8) {
 			enemyLayer = "Player";
@@ -61,6 +65,31 @@ public class Unit : Mortal {
 		EngageRaycast ();
 		VisionRaycast ();
 
+		ChangeState ();
+
+		switch (currentState) {
+
+		case(state.enemySighted):
+			EnemySighted ();
+			break;
+
+		case(state.attack):
+			if (canAtk) {
+				Attack (enemySeen);
+			}
+			break;
+
+		case(state.move):
+			Move ();
+			break;
+
+		default:
+			Idle ();
+			break;
+
+		}
+
+		/*
 		//move towards an enemy in view
 		if ((enemySeen != null) && !ignoreVision && (obstruction == null) && !occupied) {
 			if (!enemySeen.occupied) {
@@ -71,7 +100,7 @@ public class Unit : Mortal {
 			//if there are still target positions in the path and the unit is not occupied then move towards 
 			//the first position in a list of targets
 			MoveToNext();
-		}
+		}*/
 
 		if (isDead) {
 			
@@ -187,33 +216,45 @@ public class Unit : Mortal {
 		yield return new WaitForSeconds(atkCooldown);
 		canAtk = true;
 	}
-	/*
-	void OnCollisionEnter2D(Collision2D col){
-		Unit hit = col.gameObject.GetComponent<Unit>();
 
-		Debug.Log (hit.occupied);
+	public virtual void ChangeState (){
 
-		if (hit.alignment != alignment) {
-			if (!hit.occupied && !occupied) {
-				hit.occupied = true;
-				hit.obstruction = this;
-				obstruction = hit;
-				occupied = true;
-			}
+		//unit sees an unoccupied enemy
+		if ((enemySeen != null) && !ignoreVision && (obstruction == null) && !occupied) {
+			currentState = state.enemySighted;
+			return;
 		}
+
+		//unit is being blocked by an enemy
+		if (obstruction != null) {
+			currentState = state.attack;
+			return;
+		}
+
+		//unit is free and has at least 1 target destination
+		if (target.Count > 0 && !occupied) {
+			currentState = state.move;
+			return;
+		}
+
+		//unit has nothing to do but comtemplate its meaningless existence
+		currentState = state.idle;
+
 	}
 
-	void OnCollisionExit2D(Collision2D col){
+	public virtual void EnemySighted(){
+		if (!enemySeen.occupied) {
+			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+		} else
+			MoveToNext ();
+	}
 
-		Unit hit = col.gameObject.GetComponent<Unit> ();
+	public virtual void Move(){
+		MoveToNext ();
+	}
 
-		Debug.Log ("exit collision: " + hit.alignment.ToString());
-
-		if (hit.alignment != alignment) {
-			occupied = false;
-		}
-
-	}*/
-
+	public virtual void Idle(){
+		//do nothing
+	}
 
 }
