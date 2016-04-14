@@ -14,6 +14,7 @@ public class AlliedUnit : Unit {
 	new void Update () {
 		base.Update ();
 
+		/*
 		if (obstruction == null) {
 			if (enemySeen == null && !occupied) {
 				transform.position = Vector3.MoveTowards (transform.position, rallyPos, speed * Time.deltaTime);
@@ -30,7 +31,7 @@ public class AlliedUnit : Unit {
 			{
 				Attack(enemySeen);
 			}
-		}
+		}*/
 	}
 
 	public override void EngageRaycast ()
@@ -41,5 +42,22 @@ public class AlliedUnit : Unit {
 	public override void VisionRaycast ()
 	{
 		base.VisionRaycast ();
+	}
+
+	public override void Idle ()
+	{
+		//if not in formation then move into formation
+		if (!transform.position.Equals(rallyPos))
+			transform.position = Vector3.MoveTowards (transform.position, rallyPos, speed * Time.deltaTime);
+	}
+
+	public override void EnemySighted ()
+	{
+		base.EnemySighted ();
+
+		//if sighted enemy is already occupied, then move back into formation
+		if (enemySeen.occupied) {
+			transform.position = Vector3.MoveTowards (transform.position, rallyPos, speed * Time.deltaTime);
+		}
 	}
 }

@@ -33,6 +33,8 @@ public class TowerScript : MonoBehaviour {
     }
 
     void Update() {
+
+		enemiesInRange = enemiesInRange.Where(i => i != null).ToList();
         enemiesInRange = enemiesInRange.OrderBy(go => Vector3.Distance(go.transform.position, transform.position)).ToList();
         ProcessAttack();
     }
