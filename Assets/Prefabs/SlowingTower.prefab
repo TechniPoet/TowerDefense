@@ -77,8 +77,8 @@ MonoBehaviour:
   bulletDamage: 1
   bulletSpeed: 5
   enemyDetectionRadius: 2
-  maxBulletCount: 5
-  bulletCooldown: 1
+  maxBulletCount: 15
+  bulletCooldown: 3
 --- !u!212 &21248232
 SpriteRenderer:
   m_ObjectHideFlags: 1

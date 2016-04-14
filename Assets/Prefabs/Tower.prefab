@@ -74,8 +74,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 406852, guid: e2198f91078b4bc4589a89663914a099, type: 2}
+  bulletDamage: 1
+  bulletSpeed: 5
   enemyDetectionRadius: 2
-  maxBulletCount: 5
+  maxBulletCount: 15
   bulletCooldown: 1
 --- !u!212 &21255758
 SpriteRenderer:

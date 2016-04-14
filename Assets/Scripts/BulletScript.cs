@@ -8,7 +8,7 @@ public class BulletScript : MonoBehaviour {
     private TowerScript parentTower;
     private Transform targetTranform;
     protected string enemyTag = "Enemy";
-    private float life = 10;
+    private float life = 3;
 
     public void Setup(TowerScript parent, Transform target, float speed, int damage) {
         Physics2D.IgnoreCollision(parent.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -28,6 +28,10 @@ public class BulletScript : MonoBehaviour {
         if (targetTranform != null) {
             transform.position = Vector3.MoveTowards(transform.position, targetTranform.position, bulletSpeed * Time.deltaTime);
         }
+		else
+		{
+			Die();
+		}
 
     }
 

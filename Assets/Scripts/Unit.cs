@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class Unit : Mortal {
 
+	public RectTransform energyBar;
+	protected float minX;
+	protected float maxX;
+	protected float cachedY;
 
 	public Transform sightStart;
 	public Transform sightEnd;
@@ -59,11 +63,16 @@ public class Unit : Mortal {
 			enemyLayer = "AI";
 
 		visionRadius = Vector3.Distance(sightStart.position, visionCenter.position);
+
+		cachedY = energyBar.anchoredPosition.y;
+		maxX = energyBar.anchoredPosition.x;
+		minX = energyBar.anchoredPosition.x - energyBar.rect.width;
 	}
 	
 	// Update is called once per frame
 	public override void Update () {
 		base.Update();
+		energyBar.anchoredPosition = new Vector3(minX + ((currHealth / maxHealth) * energyBar.rect.width), cachedY);
 		EngageRaycast ();
 		VisionRaycast ();
 
@@ -246,7 +255,7 @@ public class Unit : Mortal {
 
 	public virtual void EnemySighted(){
 		if (!enemySeen.occupied) {
-			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position, speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position,slowFactor* speed * Time.deltaTime);
 		} else
 			MoveToNext ();
 	}

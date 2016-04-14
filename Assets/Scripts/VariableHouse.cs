@@ -22,7 +22,6 @@ public class BaseUnitVariables
 
 	[Header("Movement")]
 	public float moveSpeed;
-	public Transform wayPoint;
 
 	[Header("Attack Stats")]
 	public float damage;
@@ -53,4 +52,7 @@ public class CameraSettingsVariables
 	public float lowZoomY;
 	public float highZoomY;
 	public float zoomSpeed;
+	[Header("Boundries")]
+	public float xBoundry;
+	public float yBoundry;
 }

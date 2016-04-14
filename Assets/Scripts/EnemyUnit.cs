@@ -4,14 +4,16 @@ using System.Collections;
 public class EnemyUnit : Unit {
 
 	public Transform[] wayPoints;
+	public Transform wayPointParent;
 
 	// Use this for initialization
 	void Start () {
 		base.Awake ();
-		for (int i = 0; i < wayPoints.Length; i++)
+		for (int i = 0; i < wayPointParent.childCount; i++)
 		{
-			target.Add(wayPoints[i].position);
+			target.Add(wayPointParent.GetChild(i).position);
 		}
+		
 	}
 	
 	// Update is called once per frame

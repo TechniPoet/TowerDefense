@@ -27,11 +27,11 @@ public class TopDownCam : MonoBehaviour {
 
         if (forward)
         {
-            this.transform.position = transform.position + (Vector3.forward * Time.deltaTime * me.moveSpeed);
+			this.transform.position = transform.position + (Vector3.up * Time.deltaTime * me.moveSpeed);
         }
         if (backward)
         {
-            this.transform.position = transform.position + (-Vector3.forward * Time.deltaTime * me.moveSpeed);
+            this.transform.position = transform.position + (Vector3.down * Time.deltaTime * me.moveSpeed);
         }
         if (left)
         {
@@ -41,11 +41,13 @@ public class TopDownCam : MonoBehaviour {
         {
             this.transform.position = transform.position + (Vector3.right * Time.deltaTime * me.moveSpeed);
         }
+		float curX = Mathf.Clamp(transform.position.x, -me.xBoundry, me.xBoundry);
+		float curY = Mathf.Clamp(transform.position.y, -me.yBoundry, me.yBoundry);
+		transform.position = new Vector3(curX, curY, transform.position.z);
+		float newSize = Camera.main.orthographicSize + (-scroll * me.zoomSpeed);
 
-		float newY = transform.position.y + (-scroll * me.zoomSpeed);
-
-		newY = Mathf.Clamp(newY, me.lowZoomY, me.highZoomY);
-		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+		newSize = Mathf.Clamp(newSize, me.lowZoomY, me.highZoomY);
+		Camera.main.orthographicSize = newSize;
 
     }
 }
