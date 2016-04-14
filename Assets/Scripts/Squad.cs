@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class Squad : MonoBehaviour {
 	
 	public Vector3 rallyPoint;
-	public AlliedUnit unitPrefab;
-	public AlliedUnit alpha;
-	public AlliedUnit beta;
-	public AlliedUnit gamma;
+	public GameObject unitPrefab;
+	public GameObject alpha;
+	public GameObject beta;
+	public GameObject gamma;
 
 	enum units : int
 	{
@@ -28,22 +28,23 @@ public class Squad : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		rallyPoint = transform.position;
-
+		/*
 		alphaPos = new Vector3 (rallyPoint.x, rallyPoint.y + 0.5f, 0);
 		betaPos = new Vector3 (rallyPoint.x - 0.5f, rallyPoint.y - 0.5f, 0);
 		gammaPos = new Vector3 (rallyPoint.x + 0.5f, rallyPoint.y - 0.5f, 0);
 
-		alpha = (AlliedUnit)Instantiate (unitPrefab);
-		beta = (AlliedUnit)Instantiate (unitPrefab);
-		gamma = (AlliedUnit)Instantiate (unitPrefab);
+		alpha = Instantiate (unitPrefab);
+		beta = Instantiate (unitPrefab);
+		gamma = Instantiate (unitPrefab);
 
 		alpha.transform.position = alphaPos;
 		beta.transform.position = betaPos;
 		gamma.transform.position = gammaPos;
 
-		alpha.rallyPos = alphaPos;
-		beta.rallyPos = betaPos;
-		gamma.rallyPos = gammaPos;
+		alpha.GetComponent<AlliedUnit>().rallyPos = alphaPos;
+		beta.GetComponent<AlliedUnit>().rallyPos = betaPos;
+		gamma.GetComponent<AlliedUnit>().rallyPos = gammaPos;*/
+		
 	}
 	
 	// Update is called once per frame
@@ -54,7 +55,7 @@ public class Squad : MonoBehaviour {
 		
 		if (alpha != null)
 		{
-			alpha.rallyPos = alphaPos;
+			alpha.GetComponent<AlliedUnit>().rallyPos = alphaPos;
 		}
 		else if (!spawningAlpha)
 		{
@@ -63,7 +64,7 @@ public class Squad : MonoBehaviour {
 		}
 		if (beta != null)
 		{
-			beta.rallyPos = betaPos;
+			beta.GetComponent<AlliedUnit>().rallyPos = betaPos;
 		}
 		else if (!spawningBeta)
 		{
@@ -72,7 +73,7 @@ public class Squad : MonoBehaviour {
 		}
 		if (gamma != null)
 		{
-			gamma.rallyPos = gammaPos;
+			gamma.GetComponent<AlliedUnit>().rallyPos = gammaPos;
 		}
 		else if (!spawningGamma)
 		{
@@ -84,7 +85,7 @@ public class Squad : MonoBehaviour {
 	IEnumerator SpawnNewUnit(units unit)
 	{
 		yield return new WaitForSeconds(spawnTime);
-		AlliedUnit spwned;
+		GameObject spwned;
 		switch(unit)
 		{
 			case units.alpha:
@@ -106,6 +107,7 @@ public class Squad : MonoBehaviour {
 				throw new System.Exception("unspecified unit attempted to spawn");
 		}
 		spwned.gameObject.transform.position = rallyPoint;
-		// do setup here
+		BaseUnitVariables u = GameManager._AlliedUnit;
+		spwned.GetComponent<AlliedUnit>().Setup(u.maxHealth, u.moveType, u.faction, u.moveSpeed, u.damage, u.cooldown);
 	}
 }

@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 	public EnemyUnitVariables enemyUnit;
 	public static EnemyUnitVariables _EnemyUnit;
 
+	public BaseUnitVariables alliedUnit;
+	public static BaseUnitVariables _AlliedUnit;
+
 	[Header("Towers")]
 	public BaseTowerVariables baseTower;
 	public static BaseTowerVariables _BaseTower;
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		_EnemyUnit = enemyUnit;
+		_AlliedUnit = alliedUnit;
 		_BaseTower = baseTower;
 		_CamSettings = camSettings;
 	}

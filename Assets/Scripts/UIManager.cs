@@ -13,22 +13,24 @@ public class UIManager : MonoBehaviour {
 	public Text goldText;
 	public Text waveText;
 
+	public WaveManager waveManager;
+
 	public GameObject pauseMenu;
 	
 	void Start () {
-		healthCount = 0;
-		goldCount = 0;
-		currentWave = 1;
-		maxWave = 10;
+		healthCount = 20;
+		goldCount = 100;
+		currentWave = 0;
+		maxWave = waveManager.waves.Count;
 		UpdateHealthText ();
 		UpdateGoldText ();
-		UpdateWaveText ();
+		UpdateWaveText();
+		waveManager.waveDone += UpdateWaveText;
 	}
 
 	void Update () {
 		UpdateHealthText ();
 		UpdateGoldText ();
-		UpdateWaveText ();
 		ScanForKeyStroke();
 	}
 
@@ -44,6 +46,7 @@ public class UIManager : MonoBehaviour {
 
 	void UpdateWaveText ()
 	{
+		currentWave++;
 		waveText.text = "WAVE   " + currentWave.ToString () + " / " + maxWave.ToString ();
 	}
 

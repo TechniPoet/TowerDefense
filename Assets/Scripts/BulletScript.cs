@@ -40,6 +40,10 @@ public class BulletScript : MonoBehaviour {
             ProcessHit(coll.gameObject);
             Die();
         }
+		else
+		{
+			Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(),coll);
+		}
     }
 
     protected virtual void ProcessHit(GameObject gameObject) {

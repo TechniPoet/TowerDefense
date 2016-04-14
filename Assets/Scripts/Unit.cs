@@ -60,22 +60,7 @@ public class Unit : Mortal {
 	public virtual void Awake(){
 
 		//mvt = (int)movementType.ground;
-		isDead = false;
-		target = new List<Vector3> ();
-		occupied = false;
-		ignoreVision = false;
-		currentState = state.idle;
-
-		if (this.gameObject.layer == 8) {
-			enemyLayer = "Player";
-		} else
-			enemyLayer = "AI";
-
-		visionRadius = Vector3.Distance(sightStart.position, visionCenter.position);
-
-		cachedY = energyBar.anchoredPosition.y;
-		maxX = energyBar.anchoredPosition.x;
-		minX = energyBar.anchoredPosition.x - energyBar.rect.width;
+		
 	}
 	
 	// Update is called once per frame
@@ -138,6 +123,25 @@ public class Unit : Mortal {
 		this.speed = speed;
 		this.atk = newAtk;
 		this.atkCooldown = newCooldown;
+
+		isDead = false;
+		target = new List<Vector3>();
+		occupied = false;
+		ignoreVision = false;
+		currentState = state.idle;
+
+		if (this.gameObject.layer == 8)
+		{
+			enemyLayer = "Player";
+		}
+		else
+			enemyLayer = "AI";
+
+		visionRadius = Vector3.Distance(sightStart.position, visionCenter.position);
+
+		cachedY = energyBar.anchoredPosition.y;
+		maxX = energyBar.anchoredPosition.x;
+		minX = energyBar.anchoredPosition.x - energyBar.rect.width;
 	}
 
 
