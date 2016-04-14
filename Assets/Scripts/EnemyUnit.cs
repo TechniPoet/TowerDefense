@@ -19,7 +19,6 @@ public class EnemyUnit : Unit {
 	// Update is called once per frame
 	public new void Update () {
 		base.Update ();
-
 		/*
 		if (obstruction != null && enemySeen != null && canAtk)
 		{

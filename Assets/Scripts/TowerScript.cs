@@ -54,8 +54,11 @@ public class TowerScript : MonoBehaviour {
     protected virtual void ProcessAttack() {
         var enemyToAtack = enemiesInRange.FirstOrDefault();
         if (enemyToAtack != null) {
-            AttackEnemy(enemyToAtack);
-            StartCoroutine(CoolDown());
+			if (canShoot)
+			{
+				AttackEnemy(enemyToAtack);
+				StartCoroutine(CoolDown());
+			}
         }
     }
 

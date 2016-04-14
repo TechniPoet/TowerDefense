@@ -48,7 +48,7 @@ public class AlliedUnit : Unit {
 	{
 		//if not in formation then move into formation
 		if (!transform.position.Equals(rallyPos))
-			transform.position = Vector3.MoveTowards (transform.position, rallyPos, speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, rallyPos, Speed * Time.deltaTime);
 	}
 
 	public override void EnemySighted ()
@@ -57,7 +57,7 @@ public class AlliedUnit : Unit {
 
 		//if sighted enemy is already occupied, then move back into formation
 		if (enemySeen.occupied) {
-			transform.position = Vector3.MoveTowards (transform.position, rallyPos, speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, rallyPos, Speed * Time.deltaTime);
 		}
 	}
 }

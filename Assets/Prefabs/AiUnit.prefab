@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bc870fdfa114cae930f3c75082f116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 600
-  currHealth: 600
+  maxHealth: 100
+  currHealth: 100
   isDead: 0
   energyBar: {fileID: 22488064}
   sightStart: {fileID: 486136}

@@ -18,6 +18,15 @@ public class Unit : Mortal {
 	public bool canAtk = true;
 
 	public float speed;
+	public float Speed
+	{
+		get
+		{
+			Debug.Log("Slow Factor: "+ slowFactor);
+			Debug.Log("Speed: " + (speed * slowFactor));
+			return speed * slowFactor; 
+		}
+	}
 	public enum movementType{ ground, fly };
 	public movementType movetype;
 	//private string direction;
@@ -185,7 +194,7 @@ public class Unit : Mortal {
 	public virtual void MoveToNext(){
 		if (target.Count != 0 && !occupied) {
 
-			transform.position = Vector3.MoveTowards(transform.position, target[0], speed * Time.deltaTime * slowFactor);
+			transform.position = Vector3.MoveTowards(transform.position, target[0], Speed * Time.deltaTime * slowFactor);
 
 			//if the unit has reached the first position then remove that position from the list of targets
 			if (/*transform.position.Equals(target [0])*/ Vector3.Distance (transform.position, target [0]) < .2f) {
@@ -255,23 +264,24 @@ public class Unit : Mortal {
 
 	public virtual void EnemySighted(){
 		if (!enemySeen.occupied) {
-			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position,slowFactor* speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position,slowFactor* Speed * Time.deltaTime);
 		} else
 			MoveToNext ();
 	}
 
-    public void Slow(float slowDuration, float slowFactor) {
-        StopCoroutine("SlowLifetime");
+    public void Slow(float slowDuration, float slowFactor)
+	{
         StartCoroutine(SlowLifetime(slowDuration, slowFactor));
     }
 	public virtual void Move(){
 		MoveToNext ();
 	}
 
-    IEnumerator SlowLifetime(float slowDuration, float slowFactor) {
+    IEnumerator SlowLifetime(float slowDuration, float slowFactor)
+	{
 		StopCoroutine("SlowLifetime");
 		isSlowed = true;
-		if (this.slowFactor < slowFactor)
+		if (this.slowFactor > slowFactor)
 		{
 			this.slowFactor = slowFactor;
 		}
