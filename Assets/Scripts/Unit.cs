@@ -230,8 +230,12 @@ public class Unit : Mortal {
 
 	protected void Attack(Mortal target)
 	{
-		StartCoroutine(StartAtkCoolDown());
-		target.takeDamage(atk);
+		if (canAtk)
+		{
+			StartCoroutine(StartAtkCoolDown());
+			target.takeDamage(atk);
+		}
+		
 	}
 
 	protected IEnumerator StartAtkCoolDown()
