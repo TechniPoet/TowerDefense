@@ -4,8 +4,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
 	[Header("Units")]
-	public WeakGroundUnitVariables weakUnit;
-	public static WeakGroundUnitVariables _WeakUnit;
+	public EnemyUnitVariables enemyUnit;
+	public static EnemyUnitVariables _EnemyUnit;
 
 	[Header("Towers")]
 	public BaseTowerVariables baseTower;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 	
 	// Use this for initialization
 	void Start () {
-		_WeakUnit = weakUnit;
+		_EnemyUnit = enemyUnit;
 		_BaseTower = baseTower;
 		_CamSettings = camSettings;
 	}

@@ -8,14 +8,21 @@ public class EnemyUnit : Unit {
 
 	// Use this for initialization
 	void Start () {
-		base.Awake ();
+		
+		
+		
+	}
+
+	public void Setup(float maxHealth, movementType mvtType, faction faction, float speed, float newAtk, float newCooldown, Transform pWaypoint)
+	{
+		base.Awake();
+		base.Setup(maxHealth, mvtType, faction, speed, newAtk, newCooldown);
+		wayPointParent = pWaypoint;
 		for (int i = 0; i < wayPointParent.childCount; i++)
 		{
 			target.Add(wayPointParent.GetChild(i).position);
 		}
-		
 	}
-	
 	// Update is called once per frame
 	public new void Update () {
 		base.Update ();

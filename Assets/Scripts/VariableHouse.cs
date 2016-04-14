@@ -13,11 +13,13 @@ public class BaseUnitVariables
 {
 	public GameObject prefab;
 
+	public Unit.faction faction;
+	public Unit.movementType moveType;
+
 	public int deathValue;
 
 	[Header("Health ")]
 	public float maxHealth;
-	public float startHealth;
 	public float regenRate;
 
 	[Header("Movement")]
@@ -25,11 +27,13 @@ public class BaseUnitVariables
 
 	[Header("Attack Stats")]
 	public float damage;
+	public float cooldown;
 }
 
 [System.Serializable]
-public class WeakGroundUnitVariables
+public class EnemyUnitVariables
 {
+	public Transform waypointParent;
 	public BaseUnitVariables baseStats;
 
 }
