@@ -48,6 +48,15 @@ public class TopDownCam : MonoBehaviour {
 
 		newSize = Mathf.Clamp(newSize, me.lowZoomY, me.highZoomY);
 		Camera.main.orthographicSize = newSize;
+		/*
+		if (Input.GetMouseButtonDown(0))
+		{
+			if ()
+			{
+
+			}
+		}
+		*/
 
     }
 }

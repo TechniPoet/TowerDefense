@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Unit : Mortal {
+	public delegate void addCoins(int amt);
+	public static event addCoins UnitDied;
 
 	public RectTransform energyBar;
 	protected float minX;
@@ -108,7 +110,8 @@ public class Unit : Mortal {
 		}*/
 
 		if (isDead) {
-			
+			if (alignment == faction.ai)
+				UnitDied(10);
 			Destroy (gameObject);
 		}
 	}

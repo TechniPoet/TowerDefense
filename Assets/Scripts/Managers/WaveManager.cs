@@ -65,7 +65,11 @@ public class WaveManager : MonoBehaviour
 			StartCoroutine(LaunchSet(s));
 		}
 		yield return new WaitForSeconds(waves[index].maxTime);
-		waveDone();
+		if (index != waves.Count -1)
+		{
+			waveDone();
+		}
+		
 	}
 
 	IEnumerator LaunchSet(SpawnSet s)

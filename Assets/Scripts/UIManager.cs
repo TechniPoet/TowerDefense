@@ -4,6 +4,7 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 
+	
 	public int healthCount;
 	public int goldCount;
 	public int currentWave;
@@ -26,12 +27,25 @@ public class UIManager : MonoBehaviour {
 		UpdateGoldText ();
 		UpdateWaveText();
 		waveManager.waveDone += UpdateWaveText;
+		Unit.UnitDied += AddGold;
+		deadZone.LoseHP += RemoveLife;
 	}
 
 	void Update () {
-		UpdateHealthText ();
-		UpdateGoldText ();
+		
 		ScanForKeyStroke();
+	}
+
+	void AddGold(int amt)
+	{
+		goldCount += amt;
+		UpdateGoldText();
+	}
+
+	void RemoveLife(int amt)
+	{
+		healthCount -= amt;
+		UpdateHealthText();
 	}
 
 	void UpdateHealthText ()
