@@ -46,6 +46,7 @@ public class AlliedUnit : Unit {
 
 	public override void Idle ()
 	{
+		base.Idle ();
 		//if not in formation then move into formation
 		if (!transform.position.Equals(rallyPos))
 			transform.position = Vector3.MoveTowards (transform.position, rallyPos, Speed * Time.deltaTime);

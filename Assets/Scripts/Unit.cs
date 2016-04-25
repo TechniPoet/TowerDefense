@@ -69,8 +69,9 @@ public class Unit : Mortal {
 	public override void Update () {
 		base.Update();
 		energyBar.anchoredPosition = new Vector3(minX + ((currHealth / maxHealth) * energyBar.rect.width), cachedY);
-		EngageRaycast ();
-		VisionRaycast ();
+
+		//VisionRaycast ();
+		//EngageRaycast ();
 
 		ChangeState ();
 
@@ -162,19 +163,19 @@ public class Unit : Mortal {
 			if (hit.alignment != alignment) {
 				//Debug.Log ("hit.alignment != alignment");
 				if (!hit.occupied && !occupied) {
-					hit.occupied = true;
+					//hit.occupied = true;
 					hit.obstruction = this;
 					obstruction = hit;
-					occupied = true;
+					//occupied = true;
 				}
 			}
 		} else if (obstruction == null) {
 			occupied = false;
 		} else if (obstruction.collision != null) {
-			obstruction.occupied = true;
+			//obstruction.occupied = true;
 			obstruction.obstruction = this;
 			obstruction = obstruction;
-			occupied = true;
+			//occupied = true;
 		} else if (obstruction.collision == null) {
 			obstruction.occupied = false;
 			obstruction.obstruction = null;
@@ -233,6 +234,8 @@ public class Unit : Mortal {
 
 	protected void Attack(Mortal target)
 	{
+		EngageRaycast ();
+		occupied = true;
 		if (canAtk)
 		{
 			StartCoroutine(StartAtkCoolDown());
@@ -274,10 +277,14 @@ public class Unit : Mortal {
 	}
 
 	public virtual void EnemySighted(){
+		occupied = false;
 		if (!enemySeen.occupied) {
-			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position,slowFactor* Speed * Time.deltaTime);
-		} else
+			EngageRaycast ();
+			transform.position = Vector3.MoveTowards (transform.position, enemySeen.sightStart.position, slowFactor * Speed * Time.deltaTime);
+		} else {
+			VisionRaycast ();
 			MoveToNext ();
+		}
 	}
 
     public void Slow(float slowDuration, float slowFactor)
@@ -285,6 +292,8 @@ public class Unit : Mortal {
         StartCoroutine(SlowLifetime(slowDuration, slowFactor));
     }
 	public virtual void Move(){
+		VisionRaycast ();
+		occupied = false;
 		MoveToNext ();
 	}
 
@@ -301,7 +310,9 @@ public class Unit : Mortal {
         this.slowFactor = 1;
     }
 	public virtual void Idle(){
-		//do nothing
+		//let them see again
+		occupied = false;
+		VisionRaycast ();
 	}
 
 }
