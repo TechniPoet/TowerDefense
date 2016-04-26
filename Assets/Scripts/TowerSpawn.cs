@@ -26,10 +26,23 @@ public class TowerSpawn : MonoBehaviour {
 		} else {
 			GetComponent<SpriteRenderer>().color = startColor;
 		}
-	}
 
-	void OnMouseDown() {
-		ToggleTowerButtons();
+		if (Input.GetMouseButtonDown(0))
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
+			
+			if(hit.collider != null && hit.collider.transform == transform)
+			{
+				if (upgradesShown) {
+					DisableTowerButtons();
+				} else {
+					EnableTowerButtons();
+				}
+			} else {
+				DisableTowerButtons ();
+			}
+		}
 	}
 
 	void OnMouseEnter() {
@@ -47,17 +60,10 @@ public class TowerSpawn : MonoBehaviour {
 		slowCostText.text = slowCost.ToString ();
 	}
 
-
-	void ToggleTowerButtons() {
-
+	void EnableTowerButtons() {
 		GameObject upgrades = transform.GetChild (0).gameObject;
-
 		if (upgrades != null) {
-			if (upgrades.activeSelf) {
-				upgrades.SetActive(false);
-				highlightTower = false;
-				upgradesShown = false;
-			} else {
+			if (!upgrades.activeSelf) {
 				upgrades.SetActive(true);
 				highlightTower = true;
 				upgradesShown = true;
@@ -65,16 +71,27 @@ public class TowerSpawn : MonoBehaviour {
 		}
 	}
 
+	void DisableTowerButtons() {
+		GameObject upgrades = transform.GetChild (0).gameObject;
+		if (upgrades != null) {
+			if (upgrades.activeSelf) {
+				upgrades.SetActive (false);
+				highlightTower = false;
+				upgradesShown = false;
+			}
+		}
+	}
+
 	public void CreateNormalTower() {
 		Debug.Log ("Create Normal Tower");
 		// Functionality for normal tower construction here
-		ToggleTowerButtons ();
+		DisableTowerButtons ();
 	}
 
 	public void CreateSlowTower() {
 		Debug.Log ("Create Slow Tower");
 		// Functionality for slow tower construction here
-		ToggleTowerButtons ();
+		DisableTowerButtons ();
 	}
 
 
