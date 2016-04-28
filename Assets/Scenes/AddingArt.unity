@@ -3010,7 +3010,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11459590, guid: 94dadbb36bc4dac49a329c04881e8f6e, type: 2}
       propertyPath: camSettings.lowZoomY
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11459590, guid: 94dadbb36bc4dac49a329c04881e8f6e, type: 2}
       propertyPath: camSettings.highZoomY
