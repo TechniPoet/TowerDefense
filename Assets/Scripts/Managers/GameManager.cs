@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
 	[Header("Camera Settings")]
 	public CameraSettingsVariables camSettings;
 	public static CameraSettingsVariables _CamSettings;
-	
+
+    private Transform currentTower;
+    
 	// Use this for initialization
 	void Start () {
 		_EnemyUnit = enemyUnit;
@@ -30,5 +32,10 @@ public class GameManager : MonoBehaviour
 	void Update () {
 	
 	}
+
+
+    public void SetCurrentTower(Transform tower) {
+        currentTower = tower;
+    }
 
 }

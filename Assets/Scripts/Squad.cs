@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,9 +6,9 @@ public class Squad : MonoBehaviour {
 	
 	public Vector3 rallyPoint;
 	public GameObject unitPrefab;
-	public GameObject alpha;
-	public GameObject beta;
-	public GameObject gamma;
+	private GameObject alpha;
+	private GameObject beta;
+	private GameObject gamma;
 
 	enum units : int
 	{
