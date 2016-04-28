@@ -1,0 +1,441 @@
+fileFormatVersion: 2
+guid: 0790b3420036cbe4aaca49a56bfdda8a
+timeCreated: 1461867079
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Copter_0
+    21300002: Copter_8
+    21300004: Copter_16
+    21300006: Copter_24
+    21300008: Copter_40
+    21300010: Copter_41
+    21300012: Copter_42
+    21300014: Copter_43
+    21300016: Copter_44
+    21300018: Copter_down_0
+    21300020: Copter_46
+    21300022: Copter_48
+    21300024: Copter_49
+    21300026: Copter_50
+    21300028: Copter_51
+    21300030: Copter_52
+    21300032: Copter_down_1
+    21300034: Copter_54
+    21300036: Copter_56
+    21300038: Copter_57
+    21300040: Copter_58
+    21300042: Copter_59
+    21300044: Copter_60
+    21300046: Copter_down_2
+    21300048: Copter_62
+    21300050: Copter_64
+    21300052: Copter_65
+    21300054: Copter_66
+    21300056: Copter_67
+    21300058: Copter_68
+    21300060: Copter_down_3
+    21300062: Copter_70
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Copter_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 180
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 160
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 140
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_24
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 120
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_40
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_41
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_42
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_43
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_44
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_down_0
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 80
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_48
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_49
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_50
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_51
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_52
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_down_1
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_54
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 60
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_56
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_57
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_58
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_59
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_60
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_down_2
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_62
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 40
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_64
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_65
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_66
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_67
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_68
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_down_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Copter_70
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 20
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

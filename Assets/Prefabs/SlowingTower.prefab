@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.14, y: 1.97, z: 0}
+  m_LocalPosition: {x: 1.26, y: -8.33, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,11 +74,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 408640, guid: 2c22e67bfd6aa84449223d309af355da, type: 2}
-  bulletDamage: 1
-  bulletSpeed: 5
+  bulletDamage: 3
+  bulletSpeed: 10
   enemyDetectionRadius: 2
   maxBulletCount: 15
-  bulletCooldown: 3
+  bulletCooldown: 2
 --- !u!212 &21248232
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,8 +105,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d642adedee9b5834cb77d1e636d5ba1a, type: 3}
-  m_Color: {r: 0.08250431, g: 0.53371775, b: 0.8014706, a: 1}
+  m_Sprite: {fileID: 21300008, guid: 38445670d62d9b0458fb9829746ba200, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
