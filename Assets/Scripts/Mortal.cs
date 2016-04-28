@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Mortal : MonoBehaviour {
 
-	public int maxHealth;
-	protected int currHealth;
+	public float maxHealth = 100;
+	public float currHealth = 100;
 	public bool isDead = false;
 	
-	void update(){
+	public virtual void Update(){
 
 		//kill mortal if health drops to/below zero
 		if (currHealth <= 0) {
@@ -17,16 +17,13 @@ public class Mortal : MonoBehaviour {
 	}
 
 	//deals damage to mortal
-	void takeDamage(int dmg){
+	public void takeDamage(float dmg){
 		currHealth -= dmg;
 	}
 
 	//recovers damage for mortal
 	void heal(int valueHealed){
-		int healed = currHealth + valueHealed;
-
-		if (healed > maxHealth) {
-			currHealth = maxHealth;
-		} else {currHealth = healed;}
+		currHealth += valueHealed;
+		currHealth = Mathf.Clamp(currHealth, 0, maxHealth);
 	}
 }
