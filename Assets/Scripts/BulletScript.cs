@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour {
     protected string enemyTag = "Enemy";
     private float life = 3;
 
+
     public void Setup(TowerScript parent, Transform target, float speed, int damage) {
         Physics2D.IgnoreCollision(parent.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         parentTower = parent;

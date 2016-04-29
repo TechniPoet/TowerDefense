@@ -59,9 +59,12 @@ public class Unit : Mortal {
 
 	public Collider2D collision;
 
+	public SoundEffects _soundEffects;
+
 	public virtual void Awake(){
 
 		//mvt = (int)movementType.ground;
+		_soundEffects = GameObject.Find("SoundEffects").GetComponent<SoundEffects>();
 		
 	}
 	
@@ -111,8 +114,11 @@ public class Unit : Mortal {
 		}*/
 
 		if (isDead) {
-			if (alignment == faction.ai)
-				UnitDied(10);
+			if (alignment == faction.ai) {
+				UnitDied (10);
+				_soundEffects.enemyDieSound ();
+			} else
+				_soundEffects.allyDieSound ();
 			Destroy (gameObject);
 		}
 	}
@@ -240,6 +246,10 @@ public class Unit : Mortal {
 		{
 			StartCoroutine(StartAtkCoolDown());
 			target.takeDamage(atk);
+			if (alignment == faction.ai) {
+				_soundEffects.enemyAttackSound ();
+			} else
+				_soundEffects.allyAttackSound ();
 		}
 		
 	}
