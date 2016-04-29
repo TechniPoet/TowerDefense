@@ -23,12 +23,15 @@ public class TowerSpawn : MonoBehaviour {
 		multiSlow,
 		unit,
 	}
+	
 	public List<TowerChoice> choices;
 	public UIManager manager;
 	public GameObject upgrade1;
 	public GameObject upgrade2;
+	public GameObject upgrade3;
 	public Text upgrade1Cost;
 	public Text upgrade2Cost;
+	public Text upgrade3Cost;
 
 	private Color startColor;
 	private bool highlightTower;
@@ -58,6 +61,7 @@ public class TowerSpawn : MonoBehaviour {
 		{
 			upgrade1.GetComponent<Button>().interactable = choices[0].cost <= manager.goldCount;
 			upgrade2.GetComponent<Button>().interactable = choices[1].cost <= manager.goldCount;
+			upgrade3.GetComponent<Button>().interactable = choices[2].cost <= manager.goldCount;
 		}
 		else if (init && upgradesShown && currTower != null)
 		{
@@ -65,17 +69,20 @@ public class TowerSpawn : MonoBehaviour {
 			{
 				case TowerType.slow:
 					upgrade1.SetActive(false);
+					upgrade3.SetActive(false);
 					if (currTower.upgradeOptions.Count > 0) 
 						upgrade2.GetComponent<Button>().interactable = choices[currTower.upgradeOptions[0]].cost <= manager.goldCount;
 					break;
 				case TowerType.regular:
 					upgrade2.SetActive(false);
+					upgrade3.SetActive(false);
 					if (currTower.upgradeOptions.Count > 0)
 						upgrade1.GetComponent<Button>().interactable = choices[currTower.upgradeOptions[0]].cost <= manager.goldCount;
 					break;
 				default:
 					upgrade1.SetActive(false);
 					upgrade2.SetActive(false);
+					upgrade3.SetActive(false);
 					break;
 			}
 		}
@@ -90,6 +97,7 @@ public class TowerSpawn : MonoBehaviour {
 				}
 				else
 				{
+					SetCosts();
 					EnableTowerButtons();
 				}
 			}
@@ -112,6 +120,7 @@ public class TowerSpawn : MonoBehaviour {
 		{
 			upgrade1Cost.text = choices[0].cost.ToString();
 			upgrade2Cost.text = choices[1].cost.ToString();
+			upgrade3Cost.text = choices[2].cost.ToString();
 		}
 		else
 		{
@@ -190,6 +199,21 @@ public class TowerSpawn : MonoBehaviour {
 		}
 		// Functionality for slow tower construction here
 		DisableTowerButtons ();
+	}
+
+	public void CreateUnitTower()
+	{
+		Debug.Log("Create Unit Tower");
+		if (!init)
+		{
+			tower = Instantiate(choices[2].prefab, transform.position, Quaternion.identity) as GameObject;
+			manager.AddGold(-1 * choices[2].cost);
+			currTower = choices[2];
+			tower.transform.parent = this.transform;
+			init = true;
+		}
+		// Functionality for slow tower construction here
+		DisableTowerButtons();
 	}
 
 

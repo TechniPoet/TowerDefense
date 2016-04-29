@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
 	
 	void Start () {
 		healthCount = 20;
-		goldCount = 100;
+		goldCount = 250;
 		currentWave = 0;
 		maxWave = waveManager.waves.Count;
 		UpdateHealthText ();

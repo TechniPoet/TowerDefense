@@ -11,15 +11,13 @@ public class UnitTowerScript : TowerScript {
     public int SpawnTime;
     private Squad squad;
     private GameManager gameManager;
+	public GameObject text;
 
 	void Start () {
 	    var squadTransform = Instantiate(SquadPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-	    if (squadTransform != null) {
-	        squad = squadTransform.GetComponent<Squad>();
-	        squad.rallyPoint = RallyPoint;
-	    } else {
-	        Debug.Log("Squad created as null");
-	    }
+		squadTransform.SetActive(true);
+		squad = squadTransform.GetComponent<Squad>();
+		StartCoroutine(WaitForNewRally());
 	}
 	
 	void Update () {
@@ -30,6 +28,8 @@ public class UnitTowerScript : TowerScript {
     }
 
     IEnumerator WaitForNewRally() {
+		StopCoroutine(WaitForNewRally());
+		text.SetActive(true);
         Time.timeScale = 0;
         var breakBool = false;
         while (!breakBool) {
@@ -50,7 +50,8 @@ public class UnitTowerScript : TowerScript {
                 yield return 0;
             }
         }
-        Time.timeScale = 1;
+		text.SetActive(false);
+		Time.timeScale = 1;
     }
 
 }
