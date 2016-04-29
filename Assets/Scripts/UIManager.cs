@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour {
 		ScanForKeyStroke();
 	}
 
-	void AddGold(int amt)
+	public void AddGold(int amt)
 	{
 		goldCount += amt;
 		UpdateGoldText();

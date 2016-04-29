@@ -24,8 +24,6 @@ public class Unit : Mortal {
 	{
 		get
 		{
-			Debug.Log("Slow Factor: "+ slowFactor);
-			Debug.Log("Speed: " + (speed * slowFactor));
 			return speed * slowFactor; 
 		}
 	}
@@ -242,14 +240,15 @@ public class Unit : Mortal {
 	{
 		EngageRaycast ();
 		occupied = true;
-		if (canAtk)
+		if (canAtk && target != null)
 		{
-			StartCoroutine(StartAtkCoolDown());
+			
 			target.takeDamage(atk);
 			if (alignment == faction.ai) {
 				_soundEffects.enemyAttackSound ();
 			} else
 				_soundEffects.allyAttackSound ();
+			StartCoroutine(StartAtkCoolDown());
 		}
 		
 	}

@@ -57,7 +57,7 @@ public class AlliedUnit : Unit {
 		base.EnemySighted ();
 
 		//if sighted enemy is already occupied, then move back into formation
-		if (enemySeen.occupied) {
+		if (enemySeen == null || enemySeen.occupied) {
 			transform.position = Vector3.MoveTowards (transform.position, rallyPos, Speed * Time.deltaTime);
 		}
 	}
