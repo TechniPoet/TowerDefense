@@ -118,7 +118,7 @@ MonoBehaviour:
   allyDie: {fileID: 8300000, guid: 33d929c45ad104ec29702857e90bd337, type: 3}
   enemyAttack: {fileID: 8300000, guid: d478f3cf3f4bb494393a0b665e75a284, type: 3}
   allyAttack: {fileID: 8300000, guid: 3b8d1ea2f1e53465c98df9d66ede8b23, type: 3}
-  towerAttack: {fileID: 8300000, guid: 96a19b5f6b0e0420d8e366199b1f2201, type: 3}
+  towerAttack: {fileID: 8300000, guid: fcb1c992eb9724eaea67ae0ad36f7526, type: 3}
   slowTowerAttack: {fileID: 8300000, guid: 4e38657b895cb4433a776677738dee21, type: 3}
   towerBuild: {fileID: 8300000, guid: 46cb2557272fa4cca9804218914b81b9, type: 3}
 --- !u!1001 &100100000
