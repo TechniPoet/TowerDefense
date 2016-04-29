@@ -17,6 +17,8 @@ public class TowerScript : MonoBehaviour {
     protected List<Transform> enemiesInRange;
     private List<Transform> bullets;
 
+	protected SoundEffects _soundEffects;
+
     bool canShoot = true;
 
     void Start() {
@@ -24,6 +26,7 @@ public class TowerScript : MonoBehaviour {
         bullets = new List<Transform>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = enemyDetectionRadius;
+		_soundEffects = GameObject.Find ("SoundEffects").GetComponent<SoundEffects> ();
     }
 
     void Setup(float detectionRadius, int bulletCount) {
@@ -65,6 +68,10 @@ public class TowerScript : MonoBehaviour {
     protected virtual void AttackEnemy(Transform enemyTransform) {
         if (bullets.Count < maxBulletCount && canShoot) {
             CreateBullet(enemyTransform);
+			if (bulletPrefab.GetComponent<SlowBulletScript>() != null) {
+				_soundEffects.slowTowerAttackSound ();
+			} else
+				_soundEffects.towerAttackSound ();
         }
     }
 

@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: e1626a7829138f44280d5f6f81dae041
+timeCreated: 1461869265
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Artilery2_0
+    21300002: Artilery2_1
+    21300004: Artilery2_2
+    21300006: Artilery2_3
+    21300008: Artilery2_4
+    21300010: Artilery2_5
+    21300012: Artilery2_6
+    21300014: Artilery2_7
+    21300016: Artilery2_8
+    21300018: Artilery2_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Artilery2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 81
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 22.5}
+        - {x: -20, y: -22.5}
+        - {x: 20, y: -22.5}
+        - {x: 20, y: 22.5}
+    - name: Artilery2_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 61
+        width: 39
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 36.5}
+        - {x: -19.5, y: -36.5}
+        - {x: 19.5, y: -36.5}
+        - {x: 19.5, y: 36.5}
+    - name: Artilery2_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 70.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    - name: Artilery2_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 70.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    - name: Artilery2_4
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 70.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    - name: Artilery2_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 60
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30, y: 29}
+        - {x: -30, y: -29}
+        - {x: 30, y: -29}
+        - {x: 30, y: 29}
+    - name: Artilery2_6
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 0
+        width: 43
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 28}
+        - {x: -21.5, y: -28}
+        - {x: 21.5, y: -28}
+        - {x: 21.5, y: 28}
+    - name: Artilery2_7
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    - name: Artilery2_8
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    - name: Artilery2_9
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0.5
+        width: 52.2
+        height: 70.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 36}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 26.5, y: 36}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
