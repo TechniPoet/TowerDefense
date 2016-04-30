@@ -1,0 +1,29 @@
+Mono path[0] = 'D:/UnityGames/TowerDefense/TestBuild_Data/Managed'
+Mono path[1] = 'D:/UnityGames/TowerDefense/TestBuild_Data/Mono'
+Mono config path = 'D:/UnityGames/TowerDefense/TestBuild_Data/Mono/etc'
+PlayerConnection initialized from D:/UnityGames/TowerDefense/TestBuild_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55382
+Multi-casting "[IP] 10.0.0.116 [Port] 55382 [Flags] 2 [Guid] 1380270642 [EditorId] 3772624880 [Version] 1048832 [Id] WindowsPlayer(TechniPoet-PC) [Debug] 0" to [225.0.0.222:54997]...
+PlayerConnection already initialized - listening to [10.0.0.116:55382]
+Initialize engine version: 5.3.4f1 (fdbb5133b820)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 860M  (ID=0x119a)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\UnityGames\TowerDefense\TestBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\UnityGames\TowerDefense\TestBuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.060 seconds
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\UnityGames\TowerDefense\TestBuild_Data\Managed\System.dll (this message is harmless)
+desktop: 1680x1050 60Hz; virtual: 4680x1920 at -1920,-35
+<RI> Initializing input.
+<RI> Input initialized.
