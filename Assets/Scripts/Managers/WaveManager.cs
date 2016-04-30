@@ -29,7 +29,7 @@ public class WaveManager : MonoBehaviour
 	int index = -1;
 	public float delay;
 	bool wavesOver = false;
-	
+	public GameObject win;
 	void Start()
 	{
 		waveDone += NextWave;
@@ -51,6 +51,7 @@ public class WaveManager : MonoBehaviour
 		if (index >= waves.Count)
 		{
 			wavesOver = true;
+			win.SetActive(true);
 		}
 		else
 		{
